@@ -1,0 +1,32 @@
+<h1>DealHere</h1>
+
+<p><%= link_to "Add a New Deal", new_deal_url %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Hot Deals</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Created at</th>
+    <th></th>
+  </tr>
+  <% @deals.each do |deal| %>
+    <tr>
+      <td><%= image_tag(deal.title_picture) %></td>
+      <td><%= link_to deal.title, deal_url(deal.id) %> <br> <br> 
+        <% if deal.description!=nil %>
+          <%= deal.description.html_safe %>
+        <% end %>
+      </td>
+      <td><%= deal.category %> </td>
+      <td><%= deal.created_at %>
+        <br> <%= link_to "Edit...", "/deals/#{deal.id}/edit" %>
+        <br> <%= link_to "Delete", "/deals/#{deal.id}", :method => 'delete' %>
+
+      </td>
+
+      
+    </tr>
+  <% end %>
+
+</table>

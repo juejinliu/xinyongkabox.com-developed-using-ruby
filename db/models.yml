@@ -1,0 +1,84 @@
+Deal
+  idtemp: integer
+  title: string
+  title_picture: string
+  purchase_link: string
+  store: string
+  description: text
+  category: string
+  detail_link: string
+  created_at: datetime
+  starts_at: datetime 
+  user_id: integer
+
+Item
+  deal_id: integer
+  description: text
+  item_picture: 
+  link: string
+  price_string: string
+
+User
+  name: string
+  created_at: datetime
+
+Comment
+  deal_id: integer
+  user_id: integer
+  text: string
+  created_at: string
+
+Bookmark
+  deal_id: integer
+  user_id: integer
+
+Like
+  deal_id: integer
+  user_id: integer
+  like_type: boolean
+
+Deal_Price
+  deal_id: integer
+  price: integer
+  created_at: datetime
+  updated_at: datetime
+
+
+
+# Example table for a typical Book model.
+#
+# Book
+#   title: string
+#   author_id: integer
+#   price: integer
+#   summary: text
+#   hardcover: boolean
+#
+# Indent consistently!  Follow the above syntax exactly.
+# Typical column choices are: string, text, integer, boolean, date, time, and datetime.
+#
+#
+# Specifying Default Values
+# ----------------------------------------------------
+# Default column values can be specified like this:
+#    price: integer(0)
+#
+# If not specified, Boolean columns always default to false.
+#
+#
+# Convention-Based Defaults:
+# ----------------------------------------------------
+# You can omit the column type if it's a string, or if it's obviously an integer column:
+#
+#
+# Book
+#   title
+#   author_id
+#   price: integer
+#   summary: text
+#   hardcover: boolean
+#
+# Complete details are in the README file online.
+#
+# Have fun!
+

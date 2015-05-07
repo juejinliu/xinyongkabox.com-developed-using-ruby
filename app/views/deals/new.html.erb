@@ -1,0 +1,35 @@
+<%= form_tag "/deals" do %>
+
+  <div>
+    <label for="title">Title:</label>
+    <input size="80" name="title" id="title" placeholder="Example Cardcash: Extra 5% Off Movie Gift Cards: Fandango $25 GC">
+  </div>
+
+  <div>
+    <label for="title_picture">Picture Url:</label>
+    <input size="100" name="title_picture" id="title_picture" type="url">
+  </div>
+
+  <div>
+    <label for="purchase_link">Purchase Link:</label>
+    <input size="100" name="purchase_link" id="purchase_link" type="url" placeholder="Example: http://....">
+  </div>
+
+  <div>
+    <label for="category">Category:</label>
+    <input size="80" name="category" id="category">
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <input size="80" name="description" id="description">
+  </div>  
+
+  <input type="submit" name="commit" value="Add Deal">
+
+<% end %>
+
+
+
+
+

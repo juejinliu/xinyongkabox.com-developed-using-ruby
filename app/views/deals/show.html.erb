@@ -1,0 +1,11 @@
+<h2><%= @deal.title %></h2>
+
+<p>
+  
+	 <% if @deal.description!=nil %>
+        <%= @deal.description.html_safe %>
+     <% end %>
+
+</p>
+
+<%= image_tag @deal.title_picture %>
