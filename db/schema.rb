@@ -69,15 +69,21 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "likes", force: :cascade do |t|
     t.integer "deal_id"
     t.integer "user_id"
-    t.boolean "like_type", default: false
+    t.integer "like_value"
   end
 
   add_index "likes", ["deal_id"], name: "index_likes_on_deal_id"
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
+  create_table "sessions", force: :cascade do |t|
+    t.string "email"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
+    t.string   "email"
+    t.string   "password"
   end
 
 end

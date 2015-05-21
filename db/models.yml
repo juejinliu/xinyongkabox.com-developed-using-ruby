@@ -1,3 +1,12 @@
+User
+  name: string
+  email: string
+  password: string
+  created_at: datetime
+
+Session
+  email: string
+
 Deal
   idtemp: integer
   title: string
@@ -18,9 +27,7 @@ Item
   link: string
   price_string: string
 
-User
-  name: string
-  created_at: datetime
+
 
 Comment
   deal_id: integer
@@ -35,7 +42,7 @@ Bookmark
 Like
   deal_id: integer
   user_id: integer
-  like_type: boolean
+  like_value: integer
 
 Deal_Price
   deal_id: integer

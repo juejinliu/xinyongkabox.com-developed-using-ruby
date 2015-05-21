@@ -18,19 +18,22 @@ class DealsController < ApplicationController
   end
 
   def new
-    
+    @deal=Deal.new
   end
 
   def create
-    deal = Deal.new
-    deal.title = params[:title]
-    deal.title_picture = params[:title_picture]
-    deal.purchase_link = params[:purchase_link]
-    deal.category = params[:category]
-    deal.description = params[:description]
-    deal.created_at = DateTime.now
-    deal.save
-    redirect_to deals_url
+    @deal = Deal.new
+    @deal.title = params[:title]
+    @deal.title_picture = params[:title_picture]
+    @deal.purchase_link = params[:purchase_link]
+    @deal.category = params[:category]
+    @deal.description = params[:description]
+    @deal.created_at = DateTime.now
+    if @deal.save
+      redirect_to deals_url
+    else
+      render 'new'
+    end
   end
 
   def edit
