@@ -17,10 +17,11 @@
 
       <% if cookies["user_id"].present? %>
         <small>Hello, <%= User.find_by(id: cookies["user_id"]).name %></small>
+        <small><%= link_to "Sign Out", '/logout' %></small>
         
       <% else %>
           <small><%= link_to "Sign Up", '/signup' %></small>
-          
+          <small><%= link_to "Sign In", '/login' %></small>
 
       <% end %>
 
