@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
    root 'deals#index'
 
+   get '/signup' => 'users#new'
+   post '/users' => 'users#create'
+
 
   #########################################################
   # The "Golden 7" for accessing the "deals" resource

@@ -9,7 +9,32 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+
+    <h1><%= link_to "Deals Here", "/" %>
+
+      <small><%= link_to "Hot Deals", '/deals' %></small>
+
+      <% if cookies["user_id"].present? %>
+        <small>Hello, <%= User.find_by(id: cookies["user_id"]).name %></small>
+        
+      <% else %>
+          <small><%= link_to "Sign Up", '/signup' %></small>
+          
+
+      <% end %>
+
+    </h1>
+
+    <% if notice.present? %>
+      <div class="alert alert-info"%>
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+  </div>
 
 </body>
 </html>

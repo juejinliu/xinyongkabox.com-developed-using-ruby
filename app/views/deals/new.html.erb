@@ -1,5 +1,5 @@
 <% if @deal.errors.any? %>
-  <ul>
+  <ul class="errors">
     <% @deal.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>

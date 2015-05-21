@@ -8,6 +8,6 @@ class Deal < ActiveRecord::Base
 
 	validates_presence_of :title
 	validates_presence_of :title_picture
-	validates_presence_of :purchase_link
+	# validates_presence_of :purchase_link
 	validates_presence_of :description
 end
