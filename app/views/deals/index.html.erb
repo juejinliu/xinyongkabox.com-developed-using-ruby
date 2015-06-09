@@ -1,9 +1,11 @@
 
-<% if cookies[:deal_history_id].present? && Deal.find_by(id: deal_id).title_picture.present? %>
+<% if cookies[:deal_history_id].present? %>
   <h3>Deals you viewed</h3>
 
     <% cookies[:deal_history_id].split.last(7).each do |deal_id| %>
-      <%= link_to image_tag(Deal.find_by(id: deal_id).title_picture),deal_url(Deal.find_by(id:deal_id)) %>
+      <% if Deal.find_by(id: deal_id).title_picture.present? %>
+        <%= link_to image_tag(Deal.find_by(id: deal_id).title_picture),deal_url(Deal.find_by(id:deal_id)) %>
+      <% end %>
     <% end %>
 <% end %>
 
