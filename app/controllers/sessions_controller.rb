@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user
-      if user.authenticate(params[:password])
-        session["user_id"] = user.id
+      if user.password == params[:password]
+        cookies["user_id"] = user.id
         redirect_to root_url, notice: "Welcome back!"
       else
         redirect_to root_url, notice: "Unknown password."
@@ -18,12 +18,10 @@ class SessionsController < ApplicationController
   end
 
   def delete
-    if session["user_id"].present?
-      
-      session.delete "user_id"
-      cookies.delete "deal_history_id"
+    if cookies["user_id"].present?
+      cookies.delete "user_id"
     else
-      redirect_to root_url, notice:"Logout with a problem!"
+      puts "error, no such sesson"
     end
     redirect_to root_url, notice: "Logged out!"
   end

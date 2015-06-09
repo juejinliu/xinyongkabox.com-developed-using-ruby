@@ -1,11 +1,14 @@
 Deal.delete_all
+Item.delete_all
 User.delete_all
 Comment.delete_all
 Bookmark.delete_all
 Like.delete_all
+Deal_Price.delete_all
 
 
 deal_data = JSON.parse(open('db/deals.json').read)
+item_data = JSON.parse(open('db/items.json').read)
 
 deal_data.each do |deal_hash|
   deal = Deal.new
@@ -23,18 +26,15 @@ deal_data.each do |deal_hash|
   deal.save
 end
 
-u1=User.new
-u1.name="user1"
-u1.email="user1@example.com"
-u1.password="user1"
-u1.save
-
-u2=User.new
-u2.name="user2"
-u2.email="user2@example.com"
-u2.password="user2"
-u2.save
-
+item_data.each do |item_hash|
+	item=Item.new
+	item.deal_id=item_hash['deal_id']
+	item.description=item_hash['description']
+	item.item_picture=item_hash['item_picture']
+	item.link=item_hash['link']
+	item.price_string=item_hash['price_string']
+	item.save
+end
 
 
 puts "Seeded succesfully."

@@ -1,7 +1,7 @@
 User
   name: string
   email: string
-  password_digest: string
+  password: string
   created_at: datetime
 
 Session
@@ -11,11 +11,22 @@ Deal
   idtemp: integer
   title: string
   title_picture: string
+  purchase_link: string
   store: string
   description: text
   category: string
+  detail_link: string
   created_at: datetime
-  
+  starts_at: datetime 
+  user_id: integer
+
+Item
+  deal_id: integer
+  description: text
+  item_picture: 
+  link: string
+  price_string: string
+
 
 
 Comment
@@ -32,6 +43,13 @@ Like
   deal_id: integer
   user_id: integer
   like_value: integer
+
+Deal_Price
+  deal_id: integer
+  price: integer
+  created_at: datetime
+  updated_at: datetime
+
 
 
 # Example table for a typical Book model.
