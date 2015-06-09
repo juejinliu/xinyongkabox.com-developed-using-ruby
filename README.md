@@ -1,35 +1,21 @@
-# ruby-getting-started
+# Final project for Web Development class 
 
-A barebones Rails app, which can easily be deployed to Heroku.
+Finished by Yuan Gao
 
-This application support the [Getting Started with Ruby on Heroku](https://devcenter.heroku.com/articles/getting-started-with-ruby) article - check it out.
+This project is also deployed on www.xinyongkabox.com using heroku
 
-## Running Locally
+This project has 5 database backed models, including the Deal, Bookmark, Comment, Like and User Model.
 
-Make sure you have Ruby installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+Among these the Deal model and the User model are in a many-to-many association, connected by the Bookmark Model.
 
-```sh
-$ git clone git@github.com:heroku/ruby-getting-started.git
-$ cd ruby-getting-started
-$ bundle install
-$ bundle exec rake db:create db:migrate
-$ foreman start web
-```
+I included a little sample data in the deal.json file under /db folder, these data are extracted from website dealmoon.com using a simple python script. 
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+------------------------------------------
 
-## Deploying to Heroku
+The Deal is a complete Restful database-backed resource.
 
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku run rake db:migrate
-$ heroku open
-```
+-------------------------------------------
 
-## Documentation
 
-For more information about using Ruby on Heroku, see these Dev Center articles:
 
-- [Ruby on Heroku](https://devcenter.heroku.com/categories/ruby)
 
