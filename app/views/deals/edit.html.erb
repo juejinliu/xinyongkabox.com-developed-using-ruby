@@ -1,31 +1,37 @@
-<%= form_tag "/deals/#{@deal.id}", :method => 'patch' do %>
+<% if @deal.errors.any? %>
+  <ul class="errors">
+    <% @deal.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 
+<%= form_for @deal do |form| %>
   <div>
-    <label for="title">Title:</label>
-    <input size="80" name="title" id="title" value="<%= @deal.title %>" placeholder="Example Cardcash: Extra 5% Off Movie Gift Cards: Fandango $25 GC">
+    <%= form.label :title%>
+    <%= form.text_field :title, size: 120 , value: @deal.title, placeholder: "Example Cardcash: Extra 5% Off Movie Gift Cards: Fandango $25 GC" %>
   </div>
 
   <div>
-    <label for="title_picture">Picture Url:</label>
-    <input size="100" name="title_picture" id="title_picture" value="<%= @deal.title_picture %>" type="url">
+    <%= form.label :title_picture%>
+    <%= form.text_field :title_picture, size: 120, value: @deal.title_picture %>
   </div>
 
   <div>
-    <label for="purchase_link">Purchase Link:</label>
-    <input size="100" name="purchase_link" id="purchase_link" value="<%= @deal.purchase_link %>" type="url" placeholder="Example: http://....">
+    <%= form.label :purchase_link%>
+    <%= form.text_field :purchase_link, size: 120, value: @deal.purchase_link%>
   </div>
 
   <div>
-    <label for="category">Category:</label>
-    <input size="80" name="category" value="<%= @deal.category %>" id="category">
+    <%= form.label :category%>
+    <%= form.text_field :category, size: 120, value: @deal.category %>
   </div>
 
   <div>
-    <label for="description">Description:</label>
-    <input size="80" name="description" value="<%= @deal.description %>" id="description">
-  </div>  
+    <%= form.label :description%>
+    <%= form.text_field :description, size: 120, value: @deal.description %>
+  </div>
 
-  <input type="submit" name="commit" value="Update Deal">
+  <%= form.submit %>
   
-
 <% end %>

@@ -15,7 +15,7 @@ Deal
   description: text
   category: string
   created_at: datetime
-  
+  purchase_link: string
 
 
 Comment

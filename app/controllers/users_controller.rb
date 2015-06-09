@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 	def create
 		@user=User.new(email:params[:email], name:params[:name], password: params[:password])
 		if @user.save
+			# UserMailer.welcome_email(@user).deliver_later
 			redirect_to root_url, notice: "Thanks for signing up!"
 		else
 			render 'new'

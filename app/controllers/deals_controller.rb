@@ -14,7 +14,7 @@ class DealsController < ApplicationController
 
   def index
     if params["keyword"].present?
-      @deals=Deal.where("title LIKE ? OR description LIKE ?","%#{params[:keyword]}%","%#{params[:keyword]}%").limit(100)
+      @deals=Deal.where("lower(title) LIKE ? OR lower(description) LIKE ?","%#{params[:keyword]}%".downcase,"%#{params[:keyword]}%").limit(100)
     else
       @deals=Deal.all.limit(100)
     end
@@ -38,12 +38,15 @@ class DealsController < ApplicationController
   end
 
   def create
-    @deal = Deal.new
-    @deal.title = params[:title]
-    @deal.title_picture = params[:title_picture]
-    @deal.purchase_link = params[:purchase_link]
-    @deal.category = params[:category]
-    @deal.description = params[:description]
+    d=params.require(:deal).permit(:title, :title_picture, :purchase_link, :category, :description)
+    @deal=Deal.new(d)
+
+    # @deal = Deal.new
+    # @deal.title = params[:title]
+    # @deal.title_picture = params[:title_picture]
+    # @deal.purchase_link = params[:purchase_link]
+    # @deal.category = params[:category]
+    # @deal.description = params[:description]
     @deal.created_at = DateTime.now
     if @deal.save
       redirect_to deals_url
@@ -56,14 +59,17 @@ class DealsController < ApplicationController
   end
 
   def update
-    @deal.title = params[:title]
-    @deal.title_picture = params[:title_picture]
-    @deal.purchase_link = params[:purchase_link]
-    @deal.category = params[:category]
-    @deal.description = params[:description]
-    @deal.created_at = DateTime.now
-    @deal.save
-    redirect_to deals_url
+    d=params.require(:deal).permit(:title, :title_picture, :purchase_link, :category, :description)
+    @deal.title = params[:deal][:title]
+    @deal.title_picture = params[:deal][:title_picture]
+    @deal.purchase_link = params[:deal][:purchase_link]
+    @deal.category = params[:deal][:category]
+    @deal.description = params[:deal][:description]
+    if @deal.save
+      redirect_to deals_url
+    else
+      render 'edit'
+    end
   end
 
   def destroy

@@ -1,5 +1,16 @@
 <h2><%= @deal.title %></h2>
 
+
+<% if @deal.purchase_link.present? %>
+  <%= link_to "Purchase", @deal.purchase_link %>
+<% end %>
+<span class="glyphicon glyphicon-thumbs-up"> </span>
+<%= link_to "Like", deal_likes_url(@deal.id), method: :post%>
+<span>(<%= @deal.likes.count %>)</span>
+<span class="glyphicon glyphicon-bookmark"></span>
+<%= link_to "Bookmark", deal_bookmarks_url(@deal.id),method: :post %>
+<br>
+
 <p>
   
 	 <% if @deal.description!=nil %>

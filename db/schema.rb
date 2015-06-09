@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bookmarks", force: :cascade do |t|
     t.integer "deal_id"
     t.integer "user_id"
   end
 
-  add_index "bookmarks", ["deal_id"], name: "index_bookmarks_on_deal_id"
-  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id"
+  add_index "bookmarks", ["deal_id"], name: "index_bookmarks_on_deal_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer "deal_id"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "created_at"
   end
 
-  add_index "comments", ["deal_id"], name: "index_comments_on_deal_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["deal_id"], name: "index_comments_on_deal_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "deals", force: :cascade do |t|
     t.integer  "idtemp"
@@ -39,6 +42,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text     "description"
     t.string   "category"
     t.datetime "created_at"
+    t.string   "purchase_link"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -47,8 +51,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "like_value"
   end
 
-  add_index "likes", ["deal_id"], name: "index_likes_on_deal_id"
-  add_index "likes", ["user_id"], name: "index_likes_on_user_id"
+  add_index "likes", ["deal_id"], name: "index_likes_on_deal_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string "email"
@@ -56,9 +60,9 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
     t.string   "email"
     t.string   "password_digest"
+    t.datetime "created_at"
   end
 
 end

@@ -1,5 +1,5 @@
 
-<% if cookies[:deal_history_id].present? %>
+<% if cookies[:deal_history_id].present? && Deal.find_by(id: deal_id).title_picture.present? %>
   <h3>Deals you viewed</h3>
 
     <% cookies[:deal_history_id].split.last(7).each do |deal_id| %>
@@ -36,6 +36,9 @@
     <tr>
       <td><%= image_tag(deal.title_picture) %></td>
       <td><%= link_to deal.title, deal_url(deal.id) %> <br>
+        <% if deal.purchase_link.present? %>
+        <%= link_to "Purchase", deal.purchase_link %>
+        <% end %>
         <span class="glyphicon glyphicon-thumbs-up"> </span>
         <%= link_to "Like", deal_likes_url(deal.id), method: :post%>
         <span>(<%= deal.likes.count %>)</span>
