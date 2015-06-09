@@ -1,4 +1,28 @@
-<p><%= link_to "Add a New Deal", new_deal_url %></p>
+
+<% if cookies[:deal_history_id].present? %>
+  <h3>Deals you viewed</h3>
+
+    <% cookies[:deal_history_id].split.last(7).each do |deal_id| %>
+      <%= link_to image_tag(Deal.find_by(id: deal_id).title_picture),deal_url(Deal.find_by(id:deal_id)) %>
+    <% end %>
+<% end %>
+
+
+<%= form_tag deals_url, :method => "get" do %>
+
+  <%= text_field_tag :keyword %>
+  <%= submit_tag "Search" %>
+
+<% end %>
+
+
+<% if session[:user_id].present? %>
+  <p><%= link_to "Add a New Deal", new_deal_url %></p>
+<% end %>
+
+<p><%= @deals.count %> deals shown</p>
+<%= paginate @deals%>
+
 
 <table class="table table-striped">
   <tr>
@@ -11,10 +35,17 @@
   <% @deals.each do |deal| %>
     <tr>
       <td><%= image_tag(deal.title_picture) %></td>
-      <td><%= link_to deal.title, deal_url(deal.id) %> <br> <br> 
+      <td><%= link_to deal.title, deal_url(deal.id) %> <br>
+        <span class="glyphicon glyphicon-thumbs-up"> </span>
+        <%= link_to "Like", deal_likes_url(deal.id), method: :post%>
+        <span>(<%= deal.likes.count %>)</span>
+        <span class="glyphicon glyphicon-bookmark"></span>
+        <%= link_to "Bookmark", deal_bookmarks_url(deal.id),method: :post %>
+       <br>
         <% if deal.description!=nil %>
           <%= deal.description.html_safe %>
         <% end %>
+
       </td>
       <td><%= deal.category %> </td>
       <td><%= deal.created_at %>
@@ -28,3 +59,6 @@
   <% end %>
 
 </table>
+
+
+

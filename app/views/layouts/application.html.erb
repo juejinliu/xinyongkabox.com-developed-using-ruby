@@ -14,16 +14,18 @@
     <h1><%= link_to "Deals Here", "/" %>
 
       <small><%= link_to "Hot Deals", '/deals' %></small>
-
-      <% if cookies["user_id"].present? %>
-        <small>Hello, <%= User.find_by(id: cookies["user_id"]).name %></small>
-        <small><%= link_to "Sign Out", '/logout' %></small>
+      <div class="pull-right">
+        <% if session["user_id"].present? %>
+          <small>Hello, <%= User.find_by(id: session["user_id"]).name %></small>
+          <small><%= link_to "My Account",user_url(User.find_by(id: session["user_id"])) %> </small>
+          <small><%= link_to "Sign Out", '/logout' %></small>
         
-      <% else %>
+        <% else %>
           <small><%= link_to "Sign Up", '/signup' %></small>
           <small><%= link_to "Sign In", '/login' %></small>
 
-      <% end %>
+        <% end %>
+      </div>
 
     </h1>
 

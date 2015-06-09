@@ -1,0 +1,20 @@
+<h2><span class="label label-default">My Account</span></h2>
+
+<h3>
+<%= @user.name%> since <%= @user.created_at %>
+</h3>
+
+<h2><span class="label label-default">Bookmarks</span></h2>
+
+<h3>
+	<ul>
+		<% @user.deals.each do |deal|%>
+			<li><%= link_to deal.title, deal_url(deal) %></li>
+		<% end %>
+	</ul>
+</h3>
+
+
+
+
+
