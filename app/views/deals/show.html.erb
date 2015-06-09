@@ -5,7 +5,30 @@
 	 <% if @deal.description!=nil %>
         <%= @deal.description.html_safe %>
      <% end %>
-
 </p>
 
 <%= image_tag @deal.title_picture %>
+<br>
+<h3>
+<span>Comments  </span>
+<span class="carat">›</span>
+<span ><%= link_to "Add Comments", new_deal_comment_url(@deal) %></span>
+</h3>
+
+
+
+<% if @deal.comments.present? %>
+   <% @deal.comments.each do |comment| %>
+   	 <div class="alert alert-info">
+   	 	<% if comment.user.present? %>
+   	   		<p><%= comment.created_at  %> by <%= comment.user.name%></p>
+   	   	<% else %>
+   	   		<p><%= comment.created_at  %> by Anonymous</p>
+   	   	<% end %>
+       <p><%= comment.text %></p>
+     </div>
+   <% end %>
+<% end %>
+
+
+

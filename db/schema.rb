@@ -31,40 +31,15 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "comments", ["deal_id"], name: "index_comments_on_deal_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "deal_prices", force: :cascade do |t|
-    t.integer  "deal_id"
-    t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "deal_prices", ["deal_id"], name: "index_deal_prices_on_deal_id"
-
   create_table "deals", force: :cascade do |t|
     t.integer  "idtemp"
     t.string   "title"
     t.string   "title_picture"
-    t.string   "purchase_link"
     t.string   "store"
     t.text     "description"
     t.string   "category"
-    t.string   "detail_link"
     t.datetime "created_at"
-    t.datetime "starts_at"
-    t.integer  "user_id"
   end
-
-  add_index "deals", ["user_id"], name: "index_deals_on_user_id"
-
-  create_table "items", force: :cascade do |t|
-    t.integer "deal_id"
-    t.text    "description"
-    t.string  "item_picture"
-    t.string  "link"
-    t.string  "price_string"
-  end
-
-  add_index "items", ["deal_id"], name: "index_items_on_deal_id"
 
   create_table "likes", force: :cascade do |t|
     t.integer "deal_id"
@@ -83,7 +58,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "name"
     t.datetime "created_at"
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
   end
 
 end
